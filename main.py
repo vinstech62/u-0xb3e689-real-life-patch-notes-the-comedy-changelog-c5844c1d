@@ -13,6 +13,11 @@ LINE = (
     "warning only after the user left the house."
 )
 
+# Gate self-check: the sealed scorer requires 1-160 UTF-8 characters,
+# a single line, and more than whitespace.
+assert 1 <= len(LINE) <= 160, "patch note must be 1-160 characters"
+assert "\n" not in LINE and LINE.strip(), "patch note must be one non-blank line"
+
 
 def main():
     os.makedirs("/output", exist_ok=True)
